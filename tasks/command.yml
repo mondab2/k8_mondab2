@@ -1,0 +1,53 @@
+---
+- name: download file by command
+  command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 
+
+#- name: add repo file for kubernet
+#  file:
+#      path: "/etc/yum.repos.d/kubernetes.repo"
+#      state: touch
+- name: Insert multiple lines using Ansible
+  shell: '{{ item }}'
+  with_items:
+    - echo "[kubernetes]" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "name=Kubernetes" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "enabled=1" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "gpgcheck=1" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "repo_gpgcheck=1" >>/etc/yum.repos.d/kubernetes.repo
+    - echo "gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg" >>/etc/yum.repos.d/kubernetes.repo
+
+- name: update package
+  shell: yum update -y
+
+- name: install packages
+  command: yum install containerd.io docker-ce docker-ce-cli --nogpgcheck -y
+
+- name: Stop selinux
+  command: setenforce 0
+- name: comment selinux
+  shell: sed -i --follow-symlinks 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/sysconfig/selinux
+
+- name: Disable Firewall
+  command: systemctl disable firewalld
+
+- name: run services
+  command: service docker start
+- name: enable services
+  command: systemctl enable docker
+- name: mk directory
+  command: mkdir -p /etc/containerd
+- name: file grnerate
+  shell: containerd config default > /etc/containerd/config.toml
+- name: start container service
+  command: systemctl restart containerd
+- name: install package kubernet & restart services
+  command: '{{ item }}' 
+  with_items:
+    - yum install -y kubeadm --nogpgcheck
+    - service kubelet start
+    - service docker start
+    - systemctl enable kubelet
+    - systemctl start kubelet
+    - systemctl enable docker
+    - systemctl start docker

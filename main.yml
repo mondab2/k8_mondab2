@@ -1,0 +1,19 @@
+---
+- name: kube setup
+  hosts: "master, client"
+  tasks:
+  - include: tasks/kube.yml
+  - include: tasks/installpackage.yml
+  - include: tasks/linemodule.yml
+  - include: tasks/command.yml
+  - include: tasks/hostentry.yml
+
+- name: Only for Kube Master
+  hosts: "master"
+  tasks:
+  - include: tasks/k8master.yml
+
+- name: This task is for Client to join master
+  hosts: "client"
+  tasks:
+  - include: tasks/clientjoin.yml

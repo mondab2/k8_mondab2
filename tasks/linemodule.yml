@@ -1,0 +1,6 @@
+---
+- name: "Example1: Validate if a String or line is present in the file"
+  ansible.builtin.lineinfile:
+    path: /etc/yum.conf
+    line: "ip_resolve = 4"
+    create: yes

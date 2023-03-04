@@ -1,0 +1,11 @@
+---
+- name: update package
+  command: yum update -y
+
+- name: Package installation
+  yum:
+    name:
+      - yum-utils
+      - device-mapper-persistent-data
+      - lvm2
+    state: latest
