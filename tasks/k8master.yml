@@ -1,6 +1,6 @@
 ---
     - name: initilize Kub-Master
-      shell: kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=192.168.0.20
+      shell: kubeadm init --pod-network-cidr 10.244.0.0/16 --apiserver-advertise-address=192.168.137.66
 
     - name: create .kube directory
       file:
