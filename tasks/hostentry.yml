@@ -4,7 +4,14 @@
     path: /etc/hosts
     regexp: '^192.168.0.20'
     state: absent
-    backup: yes	
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.0.137.65'
+    state: absent
+    backup: yes
+
 - name: remove file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
@@ -12,28 +19,79 @@
     state: absent
     backup: yes
 
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.0.23'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.0.22'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.0.21'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.0.20'
+    state: absent
+    backup: yes
+
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.137.65'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.137.66'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.137.67'
+    state: absent
+    backup: yes
+- name: remove file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '^192.168.137.68'
+    state: absent
+    backup: yes
+
+
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.0.21		client1"
+    line: "192.168.137.67       client1"
     state: present
     backup: yes
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.0.22		client2"
+    line: "192.168.137.68       client2"
     state: present
     backup: yes
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.0.20		server1"
+    line: "192.168.137.66       server1"
     state: present
     backup: yes
 
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.0.23		server-ansible"
+    line: "192.168.137.65       server-ansible"
     state: present
     backup: yes
