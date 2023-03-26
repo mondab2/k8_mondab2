@@ -95,3 +95,10 @@
     line: "192.168.137.65       server-ansible"
     state: present
     backup: yes
+
+- name: host file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "192.168.137.69       jankins"
+    state: present
+    backup: yes
