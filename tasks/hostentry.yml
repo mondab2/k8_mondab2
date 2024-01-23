@@ -8,7 +8,7 @@
 - name: remove file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    regexp: '^192.168.0.137.65'
+    regexp: '^192.168.137.65
     state: absent
     backup: yes
 
@@ -73,32 +73,32 @@
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.137.67       client1"
+    line: "192.168.1.211       client1"
     state: present
     backup: yes
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.137.68       client2"
+    line: "192.168.1.212       client2"
     state: present
     backup: yes
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.137.66       server1"
-    state: present
-    backup: yes
-
-- name: host file entry
-  ansible.builtin.lineinfile:
-    path: /etc/hosts
-    line: "192.168.137.65       server-ansible"
+    line: "192.168.1.210       master"
     state: present
     backup: yes
 
 - name: host file entry
   ansible.builtin.lineinfile:
     path: /etc/hosts
-    line: "192.168.137.69       jankins"
+    line: "192.168.1.200       server1"
+    state: present
+    backup: yes
+
+- name: host file entry
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    line: "192.168.1.201       server2"
     state: present
     backup: yes
