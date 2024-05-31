@@ -1,4 +1,9 @@
 ---
+- name: docker server setup
+  hosts: "docker"
+  tasks:
+  - include: tasks/hostentry.yml
+  
 - name: kube setup
   hosts: "master, client"
   tasks:
