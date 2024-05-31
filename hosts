@@ -1,7 +1,9 @@
+[docker]
+docker  ansible_host=192.168.29.200 ansible_user=root
 [master]
-master	ansible_host=192.168.1.210 ansible_user=root
+master	ansible_host=192.168.29.210 ansible_user=root
 
 [client]
-client1	ansible_host=192.168.1.211 ansible_user=root
-client2	ansible_host=192.168.1.212 ansible_user=root
+client1	ansible_host=192.168.29.211 ansible_user=root
+client2	ansible_host=192.168.29.212 ansible_user=root
 
