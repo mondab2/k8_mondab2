@@ -1,0 +1,6 @@
+---
+- name: docker server setup
+  hosts: "docker"
+  tasks:
+  - include: tasks/hostentry.yml
+
